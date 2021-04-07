@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vacation_Manager.Models.Users;
 
 namespace Vacation_Manager
 {
@@ -29,12 +30,13 @@ namespace Vacation_Manager
             services.AddDbContext<vacationmanagerdbContext>(options =>
                 options.UseMySQL(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<vacationmanagerdbContext>();
+            //services.AddDefaultIdentity<UsersViewModel>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<vacationmanagerdbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<vacationmanagerdbContext>();
+            services.AddIdentity<UsersViewModel, IdentityRole>()
+                    .AddEntityFrameworkStores<vacationmanagerdbContext>()
+                    .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +59,6 @@ namespace Vacation_Manager
             
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

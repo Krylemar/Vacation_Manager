@@ -29,7 +29,7 @@ namespace Vacation_Manager.Controllers
                 FirstName = c.FirstName,
                 LastName = c.LastName,
                 Role = c.Role,
-                UserTeam = (int)c.UserTeam
+                UserTeamNavigation = c.UserTeamNavigation
             }).ToList();
 
             model.items = items;

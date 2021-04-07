@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using Vacation_Manager.Models.Vacations;
 
 namespace Vacation_Manager.Models.Users
 {
-    public class UsersViewModel
+    public class UsersViewModel : IdentityUser
     {
         public UsersViewModel()
         {
