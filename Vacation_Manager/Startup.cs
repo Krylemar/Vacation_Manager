@@ -1,16 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Vacation_Manager.Models.Users;
 
 namespace Vacation_Manager
@@ -30,7 +24,7 @@ namespace Vacation_Manager
             services.AddDbContext<vacationmanagerdbContext>(options =>
                 options.UseMySQL(
                     Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<UsersViewModel>(options => options.SignIn.RequireConfirmedAccount = true)
+            //services.AddDefaultIdentity<RegisterViewModel>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<vacationmanagerdbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();

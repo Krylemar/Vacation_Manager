@@ -8,5 +8,6 @@ namespace Vacation_Manager.Models.Users
     public class UsersIndexViewModel
     {
         public ICollection<UsersViewModel> items { get; set; }
+        public object UsersViewModelId { get; set; }
     }
 }
