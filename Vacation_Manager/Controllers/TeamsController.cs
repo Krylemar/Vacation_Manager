@@ -4,17 +4,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vacation_Manager.Models.Team;
+using Vacation_Manager.Models.Users;
 
 namespace Vacation_Manager.Controllers
 {
     public class TeamsController : Controller
     {
-        // GET: TeamsController
-        public ActionResult Index()
+        private readonly vacationmanagerdbContext _context;
+        public TeamsController(vacationmanagerdbContext context)
         {
-            return View();
+            _context = new vacationmanagerdbContext();
         }
+        // GET: TeamsController
+        public ActionResult Index(TeamsIndexViewModel model)
+        {
+            List <TeamsViewModel> items = _context.Teams.Select(t => new TeamsViewModel()
+            {
+                TeamId = t.TeamId,
+                TeamName = t.TeamName,
+                TeamLeadNavigation = t.TeamLeadNavigation,
+                TeamProjectNavigation = t.TeamProjectNavigation
+            }).ToList();
 
+            model.items = items;
+            return View(model);
+        }
         // GET: TeamsController/Details/5
         public ActionResult Details(int id)
         {

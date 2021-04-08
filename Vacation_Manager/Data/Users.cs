@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vacation_Manager
 {
@@ -10,7 +11,7 @@ namespace Vacation_Manager
             Teams = new HashSet<Teams>();
             Vacations = new HashSet<Vacations>();
         }
-
+        [Key]
         public int UserId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

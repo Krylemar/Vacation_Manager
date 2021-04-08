@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Vacation_Manager.Models.Teams;
 
 namespace Vacation_Manager.Models.Users
 {
@@ -15,5 +16,7 @@ namespace Vacation_Manager.Models.Users
         public string LastName { get; set; }
         public string Role {get; set; }
         public int Team { get; set; }
+
+        public virtual TeamsViewModel UserTeamNavigation { get; set; }
     }
 }
