@@ -1,0 +1,33 @@
+﻿@model Vacation_Manager.Models.ProjectModels.ProjectDetailsViewModel
+<h1>Details</h1>
+<h2>Teams working on @Model.ProjectName</h2>
+<a asp-action="AddTeam">Add</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Leader
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model.Teams)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => team.TeamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => String.Concat(team.TeamLeadNavigation.FirstName, " ", team.TeamLeadNavigation.LastName))
+                </td>
+                <td>
+
+                    <a asp-action="DeleteTeam" asp-route-id="@team.TeamId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

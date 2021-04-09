@@ -1,13 +1,9 @@
-﻿@{
-}
-@model Vacation_Manager.Models.Users.UsersCreateViewModel 
-<h1>Create</h1>
-
-<h4>User</h4>
-<hr />
+﻿@using Vacation_Manager.Models.UserModels;
+@model UsersViewModel;
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <h1>Register</h1>
+        <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
@@ -28,24 +24,10 @@
                 <label asp-for="LastName" class="control-label"></label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
+            </div>           
             <div class="form-group">
-                <label asp-for="Team" class="control-label"></label>
-                <input asp-for="Team" class="form-control" />
-                <span asp-validation-for="Team" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Register" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

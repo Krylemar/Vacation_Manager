@@ -5,15 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Vacation_Manager.Models.Users;
+using Vacation_Manager.Models.UserModels;
 
 namespace Vacation_Manager.Controllers
 {
-    public class UsersController : Controller
+    public class UserViewsController : Controller
     {
         private readonly vacationmanagerdbContext _context;
 
-        public UsersController()
+        public UserViewsController()
         {
             _context = new vacationmanagerdbContext();
         }
@@ -29,14 +29,14 @@ namespace Vacation_Manager.Controllers
                 FirstName = c.FirstName,
                 LastName = c.LastName,
                 Role = c.Role,
-                UserTeam = (int)c.UserTeam
+                UserTeamNavigation = c.UserTeamNavigation
             }).ToList();
 
             model.items = items;
 
             return View(model);
         }
-        
+
 
         // GET: UsersController/Create
         public ActionResult Create()
@@ -52,7 +52,7 @@ namespace Vacation_Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                Users user = new Users 
+                Users user = new Users
                 {
                     Username = model.Username,
                     Password = model.Password,
@@ -152,12 +152,43 @@ namespace Vacation_Manager.Controllers
         //[ValidateAntiForgeryToken]
         //public ActionResult Delete(int id, IFormCollection collection)
         //{
-            
+
         //}
 
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.UserId == id);
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(UsersCreateViewModel model) 
+        {
+            if (ModelState.IsValid)
+            {
+                Users user = new Users
+                {
+                    Username = model.Username,
+                    Password = model.Password,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserTeam = 1,
+                    Role = "Unassigned"
+                };
+                _context.Add(user);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult Login() 
+        {
+            return View();
         }
     }
 }

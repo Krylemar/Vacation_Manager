@@ -1,0 +1,44 @@
+﻿@model Vacation_Manager.Models.TeamModels.TeamIndexViewModel
+<a asp-action="Create">Create New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Leader
+            </th>
+            <th>
+                Project
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameOutput)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamProjectNavigation.ProjectName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TeamId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.TeamId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

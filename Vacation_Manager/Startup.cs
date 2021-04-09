@@ -29,8 +29,8 @@ namespace Vacation_Manager
             services.AddDbContext<vacationmanagerdbContext>(options =>
                 options.UseMySQL(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<vacationmanagerdbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<vacationmanagerdbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddIdentity<IdentityUser, IdentityRole>()

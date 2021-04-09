@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Vacation_Manager.Models.Users
+namespace Vacation_Manager.Models.UserModels
 {
     public class UsersIndexViewModel
     {

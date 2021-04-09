@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Vacation_Manager.Models.Vacations;
+using Vacation_Manager.Models.VacationModels;
 
-namespace Vacation_Manager.Models.Users
+namespace Vacation_Manager.Models.UserModels
 {
     public class UsersViewModel
     {
