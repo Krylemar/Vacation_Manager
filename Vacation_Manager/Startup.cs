@@ -21,6 +21,8 @@ namespace Vacation_Manager
             Configuration = configuration;
         }
 
+        public static bool isLoged = false;
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -35,6 +37,7 @@ namespace Vacation_Manager
             services.AddRazorPages();
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<vacationmanagerdbContext>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +53,9 @@ namespace Vacation_Manager
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
