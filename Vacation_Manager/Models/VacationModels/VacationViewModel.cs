@@ -15,6 +15,6 @@ namespace Vacation_Manager.Models.VacationModels
         public bool? IsApproved { get; set; }
         public int VacUser { get; set; }
 
-        public virtual UsersViewModel VacUserNavigation { get; set; }
+        public virtual Users VacUserNavigation { get; set; }
     }
 }

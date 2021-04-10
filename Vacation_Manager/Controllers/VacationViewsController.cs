@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vacation_Manager.Models.VacationModels;
 using Vacation_Manager;
 
 namespace VacationManager.Controllers
@@ -16,9 +17,19 @@ namespace VacationManager.Controllers
             _context = new vacationmanagerdbContext();
         }
         // GET: HomeController1
-        public IActionResult Index()
-        {           
-            return View();
+        public IActionResult Index(VacationIndexViewModel model)
+        {
+            List<VacationViewModel> vacations = _context.Vacations.Select(v => new VacationViewModel()
+            {
+                VacationId = v.VacationId,
+                StartDate = v.StartDate,
+                EndDate = v.EndDate,
+                CreationDate = v.CreationDate,
+                IsApproved = v.IsApproved,
+                VacUserNavigation = v.VacUserNavigation
+            }).ToList();
+            model.items = vacations;
+            return View(model);
         }
 
 
