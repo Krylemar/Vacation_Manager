@@ -163,13 +163,12 @@ namespace Vacation_Manager.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            
-            return View();
-            
+            return View();    
         }
         [HttpPost]
         public async Task<IActionResult> Register(UsersCreateViewModel model) 
         {
+            Startup.isLoged = true;
             if (ModelState.IsValid)
             {
                 Users user = new Users
@@ -185,13 +184,19 @@ namespace Vacation_Manager.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            Startup.isLoged = true;
+
             return View(model);
         }
         [HttpGet]
         public ActionResult Login() 
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(UsersCreateViewModel model)
+        {
+            Startup.isLoged = true;
+            return RedirectToAction(nameof(Index));
         }
     }
 }
