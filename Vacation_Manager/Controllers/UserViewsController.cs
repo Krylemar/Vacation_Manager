@@ -166,7 +166,7 @@ namespace Vacation_Manager.Controllers
             return View();    
         }
         [HttpPost]
-        public async Task<IActionResult> Register(UsersCreateViewModel model) 
+        public async Task<IActionResult> Register(UsersCreateViewModel model)
         {
             Startup.isLoged = true;
             if (ModelState.IsValid)
@@ -185,18 +185,47 @@ namespace Vacation_Manager.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            Startup.isLogged = true;
             return View(model);
         }
         [HttpGet]
-        public ActionResult Login() 
+        public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(UsersCreateViewModel model)
+
+        public ActionResult Login(string username, string password) // не знам какво да върна
         {
-            Startup.isLoged = true;
-            return RedirectToAction(nameof(Index));
+            List<UsersViewModel> items = _context.Users.Select(c => new UsersViewModel()
+            {
+                UserId = c.UserId,
+                Username = c.Username,
+                Password = c.Password,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                Role = c.Role,
+                UserTeamNavigation = c.UserTeamNavigation
+            }).ToList();
+            foreach (var user in items)
+            {
+                if (user.Username.Equals(username))
+                {
+                    if (user.Password.Equals(password))
+                    {
+                        Startup.isLogged = true;
+                        Startup.loggedInRole = user.Role;
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View();
+                }
+            }
+            return View();
         }
+
+        //public ActionResult UserLanding() 
+        //{
+
+        //}
     }
 }

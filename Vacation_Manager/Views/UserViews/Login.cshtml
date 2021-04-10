@@ -37,35 +37,25 @@
     </div>
 
 </form>-->
-<body scroll="no" style="overflow: hidden" class="body">
+<header scroll="no" style="overflow: initial" class="body">
     <div class="case">
         <h1 class="welcoming" id="welcoming">Вход</h1>
-        <form method="post" asp-controller="Home" asp-action="Index">
-            <div asp-validation-summary="ModelOnly" asp-for="Username"></div>
+
+        <form action="/" method="post">
+            <input type="text" name="username" id="username" placeholder="Потребителско име" required>
             <div>
-                <input type="username" name="username" id="username" asp-for="Username" placeholder="Потребителско име" required>
-                <span asp-validation-for="Username"></span>
-            </div>
-            <div>
-                <input class="input" type="password" name="password" asp-for="Password" id="password" placeholder="Парола" required>
+                <input class="input" type="password" name="password" id="password" placeholder="Парола" required>
                 <i class="fa fa-eye-slash" id="eye" onclick="myFunction()" aria-hidden="true"></i>
-                <span asp-validation-for="Password"></span>
             </div>
-            <div>
-                <input type="submit" value="Влизане"/>
-            </div>
-        </form>
-            <script>
-                function myFunction() {
-                    var x = document.getElementById("password");
-                    if (x.type === "password") {
-                        x.type = "text";
-                        document.getElementById("eye").className = "fa fa-eye";
-                    }
-                    else {
-                        x.type = "password";
-                        document.getElementById("eye").className = "fa fa-eye-slash";
-                    }
+            <input type="submit" class="submission" value="Влизане" asp-controller="UserViews" asp-action="Login" />
+        </form>       
+        @*<a class="submission"  asp-area="" asp-controller="UserViews" asp-action="Login">Влизане</a>*@
+        <script>
+            function myFunction() {
+                var x = document.getElementById("password");
+                if (x.type === "password") {
+                    x.type = "text";
+                    document.getElementById("eye").className = "fa fa-eye";
                 }
             </script>
             <div class="link">Нямате регистрация?<a class="signup" asp-area="" asp-controller="UserView" asp-action="Register">  Регистрирайте се тук</a></div>

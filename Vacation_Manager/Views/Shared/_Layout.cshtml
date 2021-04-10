@@ -36,23 +36,23 @@
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="navbar-nav">
-                    @if (Startup.isLoged == true)
+                    @if (Startup.isLogged == true)
                     {
                         <li class="nav-item dropdown">
-                            <a class="nav-link1" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="TeamViews" asp-action="Create">
+                            <a class="nav-link1" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="TeamViews" asp-action="Index">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 Екипи
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link2" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="ProjectViews" asp-action="Create">
+                            <a class="nav-link2" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="ProjectViews" asp-action="Index">
                                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                                 Проекти
                             </a>
 
                         </li>
                         <li>
-                            <a class="nav-link3" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="UserViews" asp-action="Create">
+                            <a class="nav-link3" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="UserViews" asp-action="Index">
                                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                                 Служители
                             </a>
