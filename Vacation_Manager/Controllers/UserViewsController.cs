@@ -168,7 +168,7 @@ namespace Vacation_Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UsersCreateViewModel model)
         {
-            Startup.isLoged = true;
+            Startup.isLogged= true;
             if (ModelState.IsValid)
             {
                 Users user = new Users

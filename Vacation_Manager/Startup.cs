@@ -22,7 +22,7 @@ namespace Vacation_Manager
         }
 
         public static bool isLogged = false;
-        public enum loggedInRole {CEO, Lead, Developer,Unassigned}
+        public static string loggedInRole = "Unassigned";
 
         public IConfiguration Configuration { get; }
 

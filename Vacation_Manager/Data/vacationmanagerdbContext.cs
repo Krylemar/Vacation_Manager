@@ -25,7 +25,7 @@ namespace Vacation_Manager
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("user id=root;password=e10102002s;server=127.0.0.1;database=vacationmanagerdb;persistsecurityinfo=True");
+                optionsBuilder.UseMySQL("user id=root;password=1234;server=127.0.0.1;database=vacationmanagerdb;persistsecurityinfo=True");
             }
         }
 

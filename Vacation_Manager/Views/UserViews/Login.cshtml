@@ -37,7 +37,7 @@
     </div>
 
 </form>-->
-<header scroll="no" style="overflow: initial" class="body">
+<body scroll="no" style="overflow: initial" class="body">
     <div class="case">
         <h1 class="welcoming" id="welcoming">Вход</h1>
 
@@ -47,7 +47,7 @@
                 <input class="input" type="password" name="password" id="password" placeholder="Парола" required>
                 <i class="fa fa-eye-slash" id="eye" onclick="myFunction()" aria-hidden="true"></i>
             </div>
-            <input type="submit" class="submission" value="Влизане" asp-controller="UserViews" asp-action="Login" />
+            <input type="submit" class="submission" value="Влизане" asp-controller="UserViews" asp-action="Login"/>
         </form>       
         @*<a class="submission"  asp-area="" asp-controller="UserViews" asp-action="Login">Влизане</a>*@
         <script>
@@ -58,6 +58,6 @@
                     document.getElementById("eye").className = "fa fa-eye";
                 }
             </script>
-            <div class="link">Нямате регистрация?<a class="signup" asp-area="" asp-controller="UserView" asp-action="Register">  Регистрирайте се тук</a></div>
+            <div class="link">Нямате регистрация?<a class="signup" asp-area="" asp-controller="UserViews" asp-action="Register">  Регистрирайте се тук</a></div>
 </div>
 </body>
