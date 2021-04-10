@@ -37,15 +37,18 @@
     </div>
 
 </form>-->
-<body scroll="no" style="overflow: hidden" class="body">
+<header scroll="no" style="overflow: initial" class="body">
     <div class="case">
         <h1 class="welcoming" id="welcoming">Вход</h1>
-        <input type="email" name="email" id="email" placeholder="Имейл Адрес" required>
-        <div>
-            <input class="input" type="password" name="password" id="password" placeholder="Парола" required>
-            <i class="fa fa-eye-slash" id="eye" onclick="myFunction()" aria-hidden="true"></i>
-        </div>
-        <a class="submission"  asp-area="" asp-controller="Home" asp-action="Index">Влизане</a>
+        <form action="/" method="post">
+            <input type="text" name="username" id="username" placeholder="Потребителско име" required>
+            <div>
+                <input class="input" type="password" name="password" id="password" placeholder="Парола" required>
+                <i class="fa fa-eye-slash" id="eye" onclick="myFunction()" aria-hidden="true"></i>
+            </div>
+            <input type="submit" class="submission" value="Влизане" asp-controller="UserViews" asp-action="Login" />
+        </form>       
+        @*<a class="submission"  asp-area="" asp-controller="UserViews" asp-action="Login">Влизане</a>*@
         <script>
             function myFunction() {
                 var x = document.getElementById("password");
