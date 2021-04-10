@@ -163,13 +163,12 @@ namespace Vacation_Manager.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            
-            return View();
-            
+            return View();    
         }
         [HttpPost]
         public async Task<IActionResult> Register(UsersCreateViewModel model)
         {
+            Startup.isLogged= true;
             if (ModelState.IsValid)
             {
                 Users user = new Users
@@ -185,6 +184,7 @@ namespace Vacation_Manager.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+
             Startup.isLogged = true;
             return View(model);
         }
@@ -194,6 +194,7 @@ namespace Vacation_Manager.Controllers
             return View();
         }
         [HttpPost]
+
         public ActionResult Login(string username, string password) // не знам какво да върна
         {
             List<UsersViewModel> items = _context.Users.Select(c => new UsersViewModel()

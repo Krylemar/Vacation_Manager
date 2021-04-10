@@ -40,13 +40,14 @@
 <body scroll="no" style="overflow: initial" class="body">
     <div class="case">
         <h1 class="welcoming" id="welcoming">Вход</h1>
+
         <form action="/" method="post">
             <input type="text" name="username" id="username" placeholder="Потребителско име" required>
             <div>
                 <input class="input" type="password" name="password" id="password" placeholder="Парола" required>
                 <i class="fa fa-eye-slash" id="eye" onclick="myFunction()" aria-hidden="true"></i>
             </div>
-            <input type="submit" class="submission" value="Влизане" asp-controller="UserViews" asp-action="Login" />
+            <input type="submit" class="submission" value="Влизане" asp-controller="UserViews" asp-action="Login"/>
         </form>       
         @*<a class="submission"  asp-area="" asp-controller="UserViews" asp-action="Login">Влизане</a>*@
         <script>
@@ -56,12 +57,7 @@
                     x.type = "text";
                     document.getElementById("eye").className = "fa fa-eye";
                 }
-                else {
-                    x.type = "password";
-                    document.getElementById("eye").className = "fa fa-eye-slash";
-                }
-            }
-        </script>
-        <div class="link">Нямате регистрация?<a class="signup" asp-area="" asp-controller="UserView" asp-action="Register">  Регистрирайте се тук</a></div>
-    </div>
+            </script>
+            <div class="link">Нямате регистрация?<a class="signup" asp-area="" asp-controller="UserViews" asp-action="Register">  Регистрирайте се тук</a></div>
+</div>
 </body>
