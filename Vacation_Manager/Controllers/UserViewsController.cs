@@ -163,7 +163,9 @@ namespace Vacation_Manager.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            
             return View();
+            
         }
         [HttpPost]
         public async Task<IActionResult> Register(UsersCreateViewModel model) 
@@ -183,6 +185,7 @@ namespace Vacation_Manager.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+            Startup.isLoged = true;
             return View(model);
         }
         [HttpGet]

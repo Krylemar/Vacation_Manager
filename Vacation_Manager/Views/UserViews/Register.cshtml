@@ -10,9 +10,8 @@
     <link href="~/css/main.css" rel="stylesheet" />
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <img src="~/Images/logo.png" />
 }
-
+<!--<body class="body">
 <div class="row">
     <div class="col-md-4">
         <h1>Register</h1>
@@ -44,3 +43,64 @@
         </form>
     </div>
 </div>
+</body>-->
+<body scroll="no" style="overflow: hidden" class="body">
+    <div class="case">
+        <h1 class="welcoming" id="welcoming">Регистрация</h1>
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Username"  type="text" name="username" id="username" placeholder="Потребителско име" required />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="FirstName" type="text" name="FirstName" id="FirstName" placeholder="Собствено име" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="LastName" type="text" name="LastName" id="LastName" placeholder="Фамилия" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div>
+                <i style="cursor: pointer;
+				padding: 6px;
+				position: absolute;
+				top: 47%;
+				left:82%;
+				color: white;
+			" class="fa fa-eye-slash" id="eye" onclick="myFunction()" aria-hidden="true"></i>
+                <div class="form-group">
+                    <input asp-for="Password" type="password" name="password" id="password" placeholder="Парола" required />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+                <input type="password" name="password-confirm" id="password-confirm" placeholder="Повторете паролата" required>
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("password");
+                        var y = document.getElementById("password-confirm");
+                        if (x.type === "password") {
+                            x.type = "text";
+                            y.type = "text";
+                            document.getElementById("eye").className = "fa fa-eye";
+                        }
+                        else {
+                            x.type = "password";
+                            y.type = "password";
+                            document.getElementById("eye").className = "fa fa-eye-slash";
+                        }
+                    }
+                </script>
+                <div class="agreements">
+                    <label class="agreement2" for="policy-agreement">
+                        <input type="checkbox" name="policy-agreement" id="policy-agreement" required>
+                        <p class="agreement" for="policy-agreement">Съгласявам се с общите условия и политиката на поверителност.</p>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Регистриране" />
+                </div>
+        </form>
+            <div class="link">Вече имате регистрация?<a class="signup" asp-area="" asp-controller="UserViews" asp-action="Login">  Влезте тук</a></div>
+    </div>
+</body>
