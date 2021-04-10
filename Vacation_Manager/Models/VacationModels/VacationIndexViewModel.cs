@@ -7,5 +7,6 @@ namespace Vacation_Manager.Models.VacationModels
 {
     public class VacationIndexViewModel
     {
+        public List<VacationViewModel> items;
     }
 }

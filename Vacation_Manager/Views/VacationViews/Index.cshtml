@@ -1,5 +1,56 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Vacation_Manager.Models.VacationModels.VacationIndexViewModel
+
+<a asp-action="Create">Create New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Creation Date
+            </th>
+            <th>
+                Is Approved
+            </th>
+            <th>
+               Belongs To
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.items)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VacationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApproved) @*трябва да се форматира*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName +" "+item.VacUserNavigation.LastName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VacationId">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.VacationId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

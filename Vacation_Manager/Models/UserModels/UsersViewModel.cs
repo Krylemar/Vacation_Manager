@@ -11,7 +11,7 @@ namespace Vacation_Manager.Models.UserModels
         public UsersViewModel()
         {
             Teams = new List<Teams>();
-            Vacations = new List<VacationViewModel>();
+            Vacations = new List<Vacations>();
         }
 
         public int UserId { get; set; }
@@ -24,6 +24,6 @@ namespace Vacation_Manager.Models.UserModels
 
         public virtual Teams UserTeamNavigation { get; set; }
         public virtual ICollection<Teams> Teams { get; set; }
-        public virtual ICollection<VacationViewModel> Vacations { get; set; }
+        public virtual ICollection<Vacations> Vacations { get; set; }
     }
 }

@@ -40,6 +40,7 @@ namespace Vacation_Manager.Controllers
         // GET: TeamsController/Create
         public ActionResult Create()
         {
+            //TeamCreateViewModel userModel = new TeamCreateViewModel();
             List<UsersViewModel> items = _context.Users.Select(c => new UsersViewModel()
             {
                 UserId = c.UserId,
@@ -50,34 +51,37 @@ namespace Vacation_Manager.Controllers
                 Role = c.Role,
                 UserTeamNavigation = c.UserTeamNavigation
             }).ToList();
-
-            ViewBag.UserList = items;
-
+           
             List<ProjectViewModel> projectItems = _context.Projects.Select(p => new ProjectViewModel()
             {
                 ProjectId = p.ProjectId,
                 ProjectName = p.ProjectName
             }).ToList();
 
-            ViewBag.ProjectList = projectItems;
+            //userModel.projectItems = projectItems;
+            //userModel.userItems = items;
 
-            return View();
+            ViewBag.projectItems = projectItems;
+            ViewBag.userItems = items;
+
+            return View(
+                );
         }
 
         // POST: TeamsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TeamCreateViewModel model) //Not tested
+        public ActionResult Create(TeamCreateViewModel model) //Working
         {
             if (ModelState.IsValid) 
             {
                 Teams team = new Teams()
                 {
                     TeamName = model.TeamName,
-                    TeamLeadNavigation = model.TeamLeadNavigation,
-                    TeamLead = model.TeamLeadNavigation.UserId,
-                    TeamProjectNavigation = model.TeamProjectNavigation,
-                    TeamProject = model.TeamProjectNavigation.ProjectId,
+                    TeamLeadNavigation = _context.Users.Find(model.LeaderId),
+                    TeamLead = model.LeaderId,
+                    TeamProjectNavigation = _context.Projects.Find(model.ProjectId),
+                    TeamProject = model.ProjectId,
                 };
                 _context.Add(team);
                 _context.SaveChanges();
@@ -122,10 +126,10 @@ namespace Vacation_Manager.Controllers
             {
                 TeamId = model.TeamId,
                 TeamName = model.TeamName,
-                TeamLeadNavigation = model.TeamLeadNavigation,
-                TeamLead = model.TeamLeadNavigation.UserId,
-                TeamProjectNavigation = model.TeamProjectNavigation,
-                TeamProject = model.TeamProjectNavigation.ProjectId
+                TeamLeadNavigation = _context.Users.Find(model.LeaderId),
+                TeamLead = model.LeaderId,
+                TeamProjectNavigation = _context.Projects.Find(model.ProjectId),
+                TeamProject = model.ProjectId
             };
 
             try

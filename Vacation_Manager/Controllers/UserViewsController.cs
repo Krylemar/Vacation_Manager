@@ -213,7 +213,7 @@ namespace Vacation_Manager.Controllers
                     if (user.Password.Equals(password))
                     {
                         Startup.isLogged = true;
-                        Startup.loggedInRole = user.Role;
+                        //Startup.loggedInRole = user.Role;
                         return RedirectToAction(nameof(Index));
                     }
                     return View();
