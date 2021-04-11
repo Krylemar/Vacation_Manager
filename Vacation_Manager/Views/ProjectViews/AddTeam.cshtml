@@ -1,18 +1,18 @@
-﻿@model  Vacation_Manager.Models.ProjectModels.ProjectViewModel
-<h1>Add Team to project</h1>
-<form action="/" method="post">
-    <select>
-        @foreach (var team in Model.Teams)
-        {
-            <option value="@team.TeamId">@team.TeamName</option>
-        }
-    </select>
-    <div class="form-group">
-        <input type="submit" value="Add" class="btn btn-primary" />
-    </div>
-</form>
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
+﻿@model Vacation_Manager.Models.ProjectModels.ProjectViewModel
+<h1>Добави екип</h1>
+<div class="col-md-4">
+    <form action="/" method="post">
+        <select>
+            <option selected disabled>-- Избери екип --</option>
+            @foreach (var team in Model.Teams)
+            {
+                <option value="@team.TeamId">@team.TeamName</option>
+            }
+        </select>
+        <div class="form-group">
+            <input type="submit" class="submission" value="Създаване" />
+            <p></p>
+            <a type="submit" asp-action="Index" class="btn btn-primary">Обратно към Проекти</a>
+        </div>
+    </form>
 </div>

@@ -1,11 +1,12 @@
 ﻿@model Vacation_Manager.Models.UserModels.UsersIndexViewModel
 <p>
 <p>
-    @if (Startup.loggedInRole == "CEO")
-    {
-        <a type="submit" class="btn btn-primary" asp-action="Create">Добави служител</a>
-    }
+
     <header class="page-header header container-fluid">
+        @if (Startup.loggedInRole == "CEO")
+        {
+            <a type="submit" class="btn btn-primary" asp-action="Create">Добави служител</a>
+        }
         <div class="tablesm">
             <table style="width:100%">
                 <thead>

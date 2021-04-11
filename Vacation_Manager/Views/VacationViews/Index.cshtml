@@ -1,61 +1,90 @@
 ﻿@model Vacation_Manager.Models.VacationModels.VacationIndexViewModel
 
-<a asp-action="Create">Create New</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Start Date
-            </th>
-            <th>
-                End Date
-            </th>
-            <th>
-                Creation Date
-            </th>
-            <th>
-                Is Approved by Leader
-            </th>
-            <th>
-                Is Approved by CEO
-            </th>
-            <th>
-                Belongs To
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.items)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VacationId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsApproved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName)
-                @Html.DisplayFor(modelItem => item.VacUserNavigation.LastName)
-            </td>
+<p>
+<p>
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.VacationId">Edit</a>
-                <a asp-action="Delete" asp-route-id="@item.VacationId">Delete</a>
-            </td>
-        </tr>
+    <header class="page-header header container-fluid">
+        @if (Startup.loggedInRole == "CEO")
+        {
+            <a type="submit" class="btn btn-primary" asp-action="Create">Добави отпуск</a>
         }
-    </tbody>
-</table>
+        <div class="tablesm">
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Входящ №
+                        </th>
+                        <th>
+                            От дата
+                        </th>
+                        <th>
+                            До дата
+                        </th>
+                        <th>
+                            Време на създаване
+                        </th>
+                        <th>
+                            Одобрена от Team Lead
+                        </th>
+                        <th>
+                            Одобрена от CEO
+                        </th>
+                        <th>
+                            Служител
+                        </th>
+                        @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                        {
+                            <th>
+                                Администриране
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.items)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VacationId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsApproved)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName)
+                                @Html.DisplayFor(modelItem => item.VacUserNavigation.LastName)
+                            </td>
+                            @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                            {
+
+                                <td>
+                                    @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@item.VacationId">Промени</a>
+                                    }
+                                    @if (Startup.loggedInRole == "CEO")
+                                    {
+                                        <a asp-action="Delete" asp-route-id="@item.VacationId">Премахни</a>
+                                    }
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+                </table>
+        </div>
+    </header>
+
+
+

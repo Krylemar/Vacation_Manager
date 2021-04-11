@@ -1,39 +1,70 @@
 ﻿@model Vacation_Manager.Models.ProjectModels.ProjectIndexViewModel
-<a asp-action="Create">Create New</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>            
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.items)
+
+<p>
+<p>
+
+    <header class="page-header header container-fluid">
+        @if (Startup.loggedInRole == "CEO")
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>               
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a>
-                    <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
-                </td>
-            </tr>
+            <a type="submit" class="btn btn-primary" asp-action="Create">Добави проект</a>
         }
-    </tbody>
-</table>
+        <div class="tablesm">
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Проект №
+                        </th>
+                        <th>
+                            Проект
+                        </th>
+                        <th>
+                            Описание
+                        </th>
+                        @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                        {
+                            <th>
+                                Администриране
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.items)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProjectId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead" || Startup.loggedInRole == "Developer")
+                        {
+                            <td>
+                                @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead" || Startup.loggedInRole == "Developer")
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a>
+                                }
+                                @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a>
+                                }
+                                @if (Startup.loggedInRole == "CEO")
+                                {
+                                    <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+                                }
+                            </td>
+                        }
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </header>
+

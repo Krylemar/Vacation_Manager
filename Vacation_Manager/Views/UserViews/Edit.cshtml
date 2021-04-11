@@ -34,6 +34,7 @@
             </div>
             <div class="form-group">
                 <select asp-for="Role">
+                    <option selected disabled>-- Избери екип --</option>
                     @foreach (var user in Model.Teams)
                     {
                         <option value="@user.TeamId">@user.TeamName</option>

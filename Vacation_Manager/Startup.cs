@@ -21,8 +21,8 @@ namespace Vacation_Manager
             Configuration = configuration;
         }
 
-        public static bool isLogged = false;
-        public static string loggedInRole = "Unassigned";
+        public static bool isLogged = true;
+        public static string loggedInRole = "CEO"; //"Unassigned";
 
         public IConfiguration Configuration { get; }
 
