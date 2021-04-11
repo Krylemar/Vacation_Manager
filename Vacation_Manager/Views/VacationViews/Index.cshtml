@@ -44,42 +44,45 @@
                 <tbody>
                     @foreach (var item in Model.items)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.VacationId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EndDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreationDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IsApproved)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName)
-                                @Html.DisplayFor(modelItem => item.VacUserNavigation.LastName)
-                            </td>
-                            @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
-                            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VacationId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsApproved)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsApprovedByCEO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName)
+                            @Html.DisplayFor(modelItem => item.VacUserNavigation.LastName)
+                        </td>
+                        @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                        {
 
-                                <td>
-                                    @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
-                                    {
-                                        <a asp-action="Edit" asp-route-id="@item.VacationId">Промени</a>
-                                    }
-                                    @if (Startup.loggedInRole == "CEO")
-                                    {
-                                        <a asp-action="Delete" asp-route-id="@item.VacationId">Премахни</a>
-                                    }
-                                </td>
-                            }
+                            <td>
+                                @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.VacationId">Промени</a>
+                                }
+                                @if (Startup.loggedInRole == "CEO")
+                                {
+                                    <a asp-action="Delete" asp-route-id="@item.VacationId">Премахни</a>
+                                }
+                            </td>
+                        }
 
-                        </tr>
+                    </tr>
                     }
                 </tbody>
                 </table>
