@@ -21,52 +21,52 @@
 </head>
 <body class="body">
     <header class="page-header header container-fluid">
-            <div class="container">
-                <div class="box">
-                    <span></span>
-                    <div class="content">
-                        <h2><b>Платен отпуск</b></h2>
-                        <p>За времето на платения годишен отпуск работодателят заплаща на работника възнаграждение, което се изчислява от начисленото среднодневно брутно трудово възнаграждение за последния календарен месец.</p>
-                        @if (Startup.isLogged == true)
-                        {
-                            <a asp-area="" asp-controller="VacationViews" asp-action="Index">Изискване на отпуск</a>
-                        }
-                        else
-                        {
-                            <a asp-area="" asp-controller="UserViews" asp-action="Login">Изискване на отпуск</a>
-                        }
-                        </div>
-                </div>
-                <div class="box">
-                    <span></span>
-                    <div class="content">
-                        <h2><b>Неплатен отпуск</b></h2>
-                        <p>Работодателят по искане на работника може да му разреши неплатен отпуск независимо от това, дали е ползвал или не платения си годишен отпуск и независимо от продължителността на трудовия му стаж.</p>
-                        @if (Startup.isLogged == true)
-                        {
-                            <a asp-area="" asp-controller="VacationViews" asp-action="Index">Изискване на отпуск</a>
-                        }
-                        else
-                        {
-                            <a asp-area="" asp-controller="UserViews" asp-action="Login">Изискване на отпуск</a>
-                        }
-                    </div>
-                </div>
-                <div class="box">
-                    <span></span>
-                    <div class="content">
-                        <h2><b>Болничен отпуск</b></h2>
-                        <p>Работник може да излезе в болничен не само когато не се чувства добре, но и когато трябва да гледа друг болен човек.</p>
-                        @if (Startup.isLogged == true)
-                        {
-                            <a asp-area="" asp-controller="VacationViews" asp-action="Index">Изискване на отпуск</a>
-                        }
-                        else
-                        {
-                            <a asp-area="" asp-controller="UserViews" asp-action="Login">Изискване на отпуск</a>
-                        }
-                    </div>
+        <div class="container">
+            <div class="box">
+                <span></span>
+                <div class="content">
+                    <h2><b>Платен отпуск</b></h2>
+                    <p>За времето на платения годишен отпуск работодателят заплаща на работника възнаграждение, което се изчислява от начисленото среднодневно брутно трудово възнаграждение за последния календарен месец.</p>
+                    @if (Startup.isLogged == true)
+                    {
+                        <a asp-area="" asp-controller="VacationViews" asp-action="Index">Изискване на отпуск</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="UserViews" asp-action="Login">Изискване на отпуск</a>
+                    }
                 </div>
             </div>
+            <div class="box">
+                <span></span>
+                <div class="content">
+                    <h2><b>Неплатен отпуск</b></h2>
+                    <p>Работодателят по искане на работника може да му разреши неплатен отпуск независимо от това, дали е ползвал или не платения си годишен отпуск и независимо от продължителността на трудовия му стаж.</p>
+                    @if (Startup.isLogged == true)
+                    {
+                        <a asp-area="" asp-controller="VacationViews" asp-action="Index">Изискване на отпуск</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="UserViews" asp-action="Login">Изискване на отпуск</a>
+                    }
+                </div>
+            </div>
+            <div class="box">
+                <span></span>
+                <div class="content">
+                    <h2><b>Болничен отпуск</b></h2>
+                    <p>Работник може да излезе в болничен не само когато не се чувства добре, но и когато трябва да гледа друг болен човек.</p>
+                    @if (Startup.isLogged == true)
+                    {
+                        <a asp-area="" asp-controller="VacationViews" asp-action="Index">Изискване на отпуск</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="UserViews" asp-action="Login">Изискване на отпуск</a>
+                    }
+                </div>
+            </div>
+        </div>
     </header>
 </body>
