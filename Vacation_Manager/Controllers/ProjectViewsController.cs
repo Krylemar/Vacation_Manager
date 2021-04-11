@@ -121,6 +121,13 @@ namespace Vacation_Manager.Controllers
         public ActionResult Delete(int id)
         {
             Projects project = _context.Projects.Find(id);
+            foreach (var item in _context.Teams)
+            {
+                if (item.TeamProject == id)
+                {
+                    item.TeamProject = 1;
+                }
+            }
             _context.Remove(project);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -134,12 +141,16 @@ namespace Vacation_Manager.Controllers
         public ActionResult Details(int id) 
         {
             Projects project = _context.Projects.Find(id);
-            ProjectDetailsViewModel model = new ProjectDetailsViewModel()
+            ProjectDetailsViewModel model = new ProjectDetailsViewModel() 
             {
                 ProjectName = project.ProjectName,
-                ProjectId = project.ProjectId,
-                Teams = project.Teams
+                ProjectId = project.ProjectId
             };
+            foreach (var item in project.Teams)
+            {
+                model.Teams.Add(item);
+            }
+            
             return View(model);
         }
         [HttpGet]

@@ -20,7 +20,7 @@ namespace Vacation_Manager.Models.UserModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Role { get; set; }
-        public int UserTeam { get; set; }
+        public int? UserTeam { get; set; }
 
         public virtual Teams UserTeamNavigation { get; set; }
         public virtual ICollection<Teams> Teams { get; set; }

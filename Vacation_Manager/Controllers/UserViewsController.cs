@@ -90,7 +90,7 @@ namespace Vacation_Manager.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Role = user.Role,
-                Team = (int)user.UserTeam
+                Team = user.UserTeam
 
             };
 

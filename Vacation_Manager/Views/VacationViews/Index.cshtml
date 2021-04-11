@@ -3,11 +3,8 @@
 <p>
 <p>
 
-    <header class="page-header header container-fluid">
-        @if (Startup.loggedInRole == "CEO")
-        {
-            <a type="submit" class="btn btn-primary" asp-action="Create">Добави отпуск</a>
-        }
+    <header class="page-header header container-fluid">        
+            <a type="submit" class="btn btn-primary" asp-action="Create">Добави отпуск</a>       
         <div class="tablesm">
             <table style="width:100%">
                 <thead>
@@ -23,6 +20,9 @@
                         </th>
                         <th>
                             Дата на създаване
+                        </th>
+                        <th>
+                            Тип
                         </th>
                         <th>
                             Одобрена от Лидер
@@ -58,10 +58,27 @@
                             @Html.DisplayFor(modelItem => item.CreationDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IsApproved)
+                             @Html.DisplayFor(modelItem => item.VacType)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IsApprovedByCEO)
+                            @if (item.IsApproved)
+                            {
+                                @Html.Label("Да");
+                            }
+                            @if (!item.IsApproved)
+                            {
+                                @Html.Label("Не");
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsApprovedByCEO)
+                            {
+                                @Html.Label("Да");
+                            }
+                            @if (!item.IsApprovedByCEO)
+                            {
+                                @Html.Label("Не");
+                            }
                         </td>
                         <td>
 
@@ -71,14 +88,18 @@
                         @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
                         {
 
-                    <td>
-                        @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
-                        {
-                    <a asp-action="Edit" asp-route-id="@item.VacationId">Промени</a>}
-                        @if (Startup.loggedInRole == "CEO")
-                        {
-                    <a asp-action="Delete" asp-route-id="@item.VacationId">Премахни</a>}
-                    </td>}
+                            <td>
+                            @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
+                            {
+                                <a asp-action="Approve" asp-route-id="@item.VacationId">Одобри</a>
+                                <a asp-action="Edit" asp-route-id="@item.VacationId">Промени</a>
+                            }
+                            @if (Startup.loggedInRole == "CEO")
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.VacationId">Премахни</a>
+                            }
+                            </td>
+                        }
 
                     </tr>
                     }

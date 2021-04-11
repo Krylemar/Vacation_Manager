@@ -7,11 +7,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="VacationId" />
             <div class="form-group">
-                <input type="datetime-local" asp-for="StartDate" value="Изберете дата и час">
+                <input type="datetime-local" asp-for="StartDate" value="@Model.StartDate">
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="datetime-local" asp-for="EndDate" value="Изберете дата и час">
+                <input type="datetime-local" asp-for="EndDate" value="@Model.EndDate">
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">

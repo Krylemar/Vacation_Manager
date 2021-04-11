@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Vacation_Manager.Models.VacationModels;
 using Vacation_Manager;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace VacationManager.Controllers
 {
@@ -69,49 +71,55 @@ namespace VacationManager.Controllers
         // GET: HomeController1/Edit/5
         public ActionResult Edit(int id)
         {
+            Vacations vac =_context.Vacations.Find(id);
+            VacationEditViewModel model = new VacationEditViewModel()
+            {
+                VacationId = vac.VacationId,
+                StartDate = vac.StartDate,
+                EndDate = vac.EndDate,
+                VacType = vac.VacType,
+                VacUser = vac.VacUser
+            };
 
-            return View();
+            return View(model);
         }
 
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(VacationEditViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
+                Vacations vac = _context.Vacations.Find(model.VacationId);
+                vac.StartDate = model.StartDate;
+                vac.EndDate = model.EndDate;
+                vac.VacType = model.VacType;
+                _context.Update(vac);
+                _context.SaveChanges();                             
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(model);
+        }
+        private bool VacationExists(int vacId) 
+        {
+            return _context.Vacations.Any(v => v.VacationId == vacId);
         }
 
         // GET: HomeController1/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Vacations vac =  _context.Vacations.Find(id);
+            _context.Remove(vac);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: HomeController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+       [HttpGet]
+        public ActionResult Approve(int id) 
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult Approve(int vacId) 
-        {
-            Vacations vac = _context.Vacations.Find(vacId);
+            Vacations vac = _context.Vacations.Find(id);
             if (Startup.loggedInUser.Role.Equals("Team Lead"))
             {
                 vac.IsApproved = true;
@@ -120,6 +128,8 @@ namespace VacationManager.Controllers
             {
                 vac.IsApprovedByCeo = true;
             }
+            _context.Update(vac);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 

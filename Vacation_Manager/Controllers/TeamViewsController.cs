@@ -114,13 +114,19 @@ namespace Vacation_Manager.Controllers
 
             ViewBag.ProjectList = projectItems;
 
-            return View();
+            Teams team = _context.Teams.Find(id);
+            TeamEditViewModel model = new TeamEditViewModel
+            {
+                TeamId = team.TeamId,
+            };
+
+            return View(model);
         }
 
         // POST: TeamsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TeamEditViewModel model) //Not Tested
+        public ActionResult Edit(TeamEditViewModel model)
         {
             Teams team = new Teams
             {
