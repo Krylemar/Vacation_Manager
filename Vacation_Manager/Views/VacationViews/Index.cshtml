@@ -32,19 +32,19 @@
                 @Html.DisplayFor(modelItem => item.VacationId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate.ToShortDateString())
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EndDate.ToShortDateString())
+                @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreationDate.ToShortDateString())
+                @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsApproved) @*трябва да се форматира*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName +" "+item.VacUserNavigation.LastName)
+                @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.VacationId">Edit</a>
