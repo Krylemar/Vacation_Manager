@@ -11,6 +11,8 @@ namespace Vacation_Manager
         public DateTime CreationDate { get; set; }
         public bool? IsApproved { get; set; }
         public int VacUser { get; set; }
+        public string VacType { get; set; }
+        public bool? IsApprovedByCeo { get; set; }
 
         public virtual Users VacUserNavigation { get; set; }
     }

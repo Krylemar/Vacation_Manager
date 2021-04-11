@@ -1,11 +1,10 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Vacation_Manager
 {
-    public partial class vacationmanagerdbContext : IdentityDbContext
+    public partial class vacationmanagerdbContext : DbContext
     {
         public vacationmanagerdbContext()
         {
@@ -15,7 +14,6 @@ namespace Vacation_Manager
             : base(options)
         {
         }
-
         public virtual DbSet<Projects> Projects { get; set; }
         public virtual DbSet<Teams> Teams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
@@ -25,13 +23,14 @@ namespace Vacation_Manager
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySQL("user id=root;password=e10102002s;server=127.0.0.1;database=vacationmanagerdb;persistsecurityinfo=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        {                     
+
             modelBuilder.Entity<Projects>(entity =>
             {
                 entity.HasKey(e => e.ProjectId)
@@ -66,13 +65,11 @@ namespace Vacation_Manager
                 entity.HasOne(d => d.TeamLeadNavigation)
                     .WithMany(p => p.Teams)
                     .HasForeignKey(d => d.TeamLead)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Leader");
 
                 entity.HasOne(d => d.TeamProjectNavigation)
                     .WithMany(p => p.Teams)
                     .HasForeignKey(d => d.TeamProject)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Project");
             });
 
@@ -88,7 +85,7 @@ namespace Vacation_Manager
                     .IsUnique();
 
                 entity.HasIndex(e => e.UserTeam)
-                    .HasName("FK_Team");
+                    .HasName("FK_UserTeam");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -113,7 +110,7 @@ namespace Vacation_Manager
                 entity.HasOne(d => d.UserTeamNavigation)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.UserTeam)
-                    .HasConstraintName("FK_Team");
+                    .HasConstraintName("FK_UserTeam");
             });
 
             modelBuilder.Entity<Vacations>(entity =>
@@ -130,7 +127,11 @@ namespace Vacation_Manager
 
                 entity.Property(e => e.EndDate).HasColumnType("date");
 
+                entity.Property(e => e.IsApprovedByCeo).HasColumnName("IsApprovedByCEO");
+
                 entity.Property(e => e.StartDate).HasColumnType("date");
+
+                entity.Property(e => e.VacType).HasColumnType("enum('Paid','Unpaid','Sick')");
 
                 entity.HasOne(d => d.VacUserNavigation)
                     .WithMany(p => p.Vacations)
