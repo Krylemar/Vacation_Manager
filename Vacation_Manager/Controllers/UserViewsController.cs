@@ -222,6 +222,13 @@ namespace Vacation_Manager.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Startup.isLogged = false;
+            ViewBag.LogoutMessage = "Довиждане, ще ми липсваш...";
+            return RedirectToAction(nameof(Index), nameof(HomeController));
+        }
 
         //public ActionResult UserLanding() 
         //{
