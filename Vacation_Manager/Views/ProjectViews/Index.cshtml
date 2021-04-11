@@ -48,15 +48,15 @@
                             <td>
                                 @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead" || Startup.loggedInRole == "Developer")
                                 {
-                                    <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a>
+                                    <a asp-action="Details" asp-route-id="@item.ProjectId">Детайли</a>
                                 }
                                 @if (Startup.loggedInRole == "CEO" || Startup.loggedInRole == "Team Lead")
                                 {
-                                    <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a>
+                                    <a asp-action="Edit" asp-route-id="@item.ProjectId">Промени</a>
                                 }
                                 @if (Startup.loggedInRole == "CEO")
                                 {
-                                    <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+                                    <a asp-action="Delete" asp-route-id="@item.ProjectId">Премахни</a>
                                 }
                             </td>
                         }

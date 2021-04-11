@@ -1,20 +1,20 @@
 ﻿
 @model Vacation_Manager.Models.ProjectModels.ProjectEditViewModel
-<p></p>
-<p></p>
-<h1>Промени проект</h1>
+    <p></p>
+    <p></p>
+    <h1 style="color:white;margin-left: 10px;">Промени проект</h1>
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProjectId" />
             <div class="form-group">
-                <input asp-for="ProjectName" placeholder="Име на проект"/>
+                <input asp-for="ProjectName" placeholder="Име на проект" />
                 <span asp-validation-for="ProjectName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Description" placeholder="Описание"/>
+                <input asp-for="Description" placeholder="Описание" />
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>           
+            </div>
             <div class="form-group">
                 <input type="submit" class="submission" value="Създаване" />
                 <p></p>
