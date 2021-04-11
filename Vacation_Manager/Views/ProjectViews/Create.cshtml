@@ -1,30 +1,23 @@
 ﻿@model Vacation_Manager.Models.ProjectModels.ProjectCreateViewModel
-
-<h1>Create</h1>
-
-<h4>Project</h4>
-<hr />
-<div class="row">
+    <p></p>
+    <p></p>
+    <h1 style="color:white;margin-left: 10px;">Създай проект</h1>
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProjectName" class="control-label">Project Name:</label>
-                <input asp-for="ProjectName" class="form-control" />
+                <input asp-for="ProjectName" placeholder="Име на роект" />
                 <span asp-validation-for="ProjectName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label">Description:</label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" placeholder="Описание" />
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>            
+            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" class="submission" value="Създаване" />
+                <p></p>
+                <a type="submit" asp-action="Index" class="btn btn-primary">Обратно към Проекти</a>
             </div>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
