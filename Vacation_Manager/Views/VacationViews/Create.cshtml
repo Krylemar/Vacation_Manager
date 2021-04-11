@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Vacation_Manager.Models.VacationModels.VacationCreateViewModel
+
+<h1>Create</h1>
+<h4>Team</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label">Начална дата:</label>
+                <input type="datetime-local" asp-for="CreationDate" value="Изберете дата и час">
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label">Крайна дата:</label>
+                <input type="datetime-local" asp-for="EndDate" value="Изберете дата и час">
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>          
+            <div class="form-group">
+                <label asp-for="VacType" class="control-label">Тип отпуск:</label>
+                <select asp-for="VacType">
+                    <option value="Paid"> Платен</option>
+                    <option value="Unpaid">Неплатен</option>
+                    <option value="Sick">Болничен</option>
+                </select>
+                <span asp-validation-for="VacType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -17,6 +17,9 @@
                 Creation Date
             </th>
             <th>
+                Type
+            </th>
+            <th>
                 Is Approved by Leader
             </th>
             <th>
@@ -44,7 +47,13 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.VacType)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApprovedByCEO)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VacUserNavigation.FirstName)

@@ -25,8 +25,10 @@ namespace VacationManager.Controllers
                 StartDate = v.StartDate,
                 EndDate = v.EndDate,
                 CreationDate = v.CreationDate,
-                IsApproved = v.IsApproved,
-                VacUserNavigation = v.VacUserNavigation
+                IsApproved = (bool)v.IsApproved,
+                IsApprovedByCEO = (bool)v.IsApprovedByCeo,
+                VacType = v.VacType,
+                VacUserNavigation = v.VacUserNavigation,
             }).ToList();
             model.items = vacations;
             return View(model);
@@ -42,21 +44,32 @@ namespace VacationManager.Controllers
         // POST: HomeController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(VacationCreateViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
+                Users vacOwner = Startup.loggedInUser;
+                Vacations vacation = new Vacations()
+                {
+                    StartDate = model.StartDate,
+                    EndDate = model.EndDate,
+                    CreationDate = DateTime.UtcNow,
+                    IsApproved = false,
+                    IsApprovedByCeo = false,
+                    VacType = model.VacType,
+                    VacUser = vacOwner.UserId
+                };
+                _context.Add(vacation);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         // GET: HomeController1/Edit/5
         public ActionResult Edit(int id)
         {
+
             return View();
         }
 
