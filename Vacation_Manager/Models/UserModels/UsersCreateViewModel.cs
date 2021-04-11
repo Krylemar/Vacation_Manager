@@ -9,11 +9,19 @@ namespace Vacation_Manager.Models.UserModels
     public class UsersCreateViewModel
     {
 
+        public UsersCreateViewModel()
+        {
+            Teams = new List<Teams>();
+        }
+
         public string Username { get; set; }
         public string Password { get; set; }       
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Role { get; set; }
         public int Team { get; set; }
+
+        public virtual ICollection<Teams> Teams { get; set; }
     }
+
 }
