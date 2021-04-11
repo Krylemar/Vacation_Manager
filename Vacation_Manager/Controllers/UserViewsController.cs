@@ -147,13 +147,6 @@ namespace Vacation_Manager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: UsersController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-
-        //}
 
         private bool UserExists(int id)
         {
@@ -197,7 +190,7 @@ namespace Vacation_Manager.Controllers
 
         public ActionResult Login(string username, string password) // не знам какво да върна
         {
-            List<UsersViewModel> items = _context.Users.Select(c => new UsersViewModel()
+            List<Users> items = _context.Users.Select(c => new Users()
             {
                 UserId = c.UserId,
                 Username = c.Username,
@@ -214,7 +207,8 @@ namespace Vacation_Manager.Controllers
                     if (user.Password.Equals(password))
                     {
                         Startup.isLogged = true;
-                        Startup.loggedInRole = user.Role;
+                        Startup.loggedInUser = user;
+                        Startup.loggedInRole = Startup.loggedInUser.Role;
                         return RedirectToAction(nameof(Index));
                     }
                     return View();
@@ -227,7 +221,7 @@ namespace Vacation_Manager.Controllers
         {
             Startup.isLogged = false;
             ViewBag.LogoutMessage = "Довиждане, ще ми липсваш...";
-            return RedirectToAction(nameof(Index), nameof(HomeController));
+            return RedirectToAction(nameof(Index), "Home");
         }
 
         //public ActionResult UserLanding() 

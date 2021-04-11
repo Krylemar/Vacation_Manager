@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Vacation_Manager.Models.UserModels;
 
 namespace Vacation_Manager.Models.VacationModels
 {
-    public class VacationViewModel
+    public class VacationCreateViewModel
     {
-        public int VacationId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreationDate { get; set; }

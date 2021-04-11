@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vacation_Manager;
 
 namespace Vacation_Manager
 {
@@ -21,8 +22,9 @@ namespace Vacation_Manager
             Configuration = configuration;
         }
 
-        public static bool isLogged = true;
-        public static string loggedInRole = "CEO"; //"Unassigned";
+        public static bool isLogged = false;
+        public static string loggedInRole = "Unassigned";
+        public static Users loggedInUser = null;
 
         public IConfiguration Configuration { get; }
 
