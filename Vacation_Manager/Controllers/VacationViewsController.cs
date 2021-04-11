@@ -108,5 +108,20 @@ namespace VacationManager.Controllers
                 return View();
             }
         }
+
+        public ActionResult Approve(int vacId) 
+        {
+            Vacations vac = _context.Vacations.Find(vacId);
+            if (Startup.loggedInUser.Role.Equals("Team Lead"))
+            {
+                vac.IsApproved = true;
+            }
+            else if (Startup.loggedInUser.Role.Equals("CEO"))
+            {
+                vac.IsApprovedByCeo = true;
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

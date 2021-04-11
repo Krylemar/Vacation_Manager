@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Vacation_Manager.Models.VacationModels
 {
-    public class VacationCreateViewModel
+    public class VacationEditViewModel
     {
-
+        public int VacationId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreationDate { get; set; }
